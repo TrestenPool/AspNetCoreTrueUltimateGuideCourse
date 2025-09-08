@@ -1,0 +1,7 @@
+Best practices 
+  - isolated 
+  - test single method at a time
+  - unordered
+
+
+- The PersonsServiceTest & the CountriesServiceTest are not best practice because they are not standalone, they depend on the database, the PersonService and the CountryService when then relies on the database through efcore which is not best practice
