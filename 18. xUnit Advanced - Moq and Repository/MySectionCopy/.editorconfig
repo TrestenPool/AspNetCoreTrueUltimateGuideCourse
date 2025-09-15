@@ -1,0 +1,13 @@
+# .editorconfig
+
+# Top-most editorconfig file
+root = true
+
+# C# files
+[*.cs]
+
+# Style:
+# Use spaces instead of tabs for indentation
+indent_style = space
+# The size of an indentation
+indent_size = 4

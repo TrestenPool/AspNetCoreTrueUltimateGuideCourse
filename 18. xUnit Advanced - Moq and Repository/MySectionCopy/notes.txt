@@ -5,3 +5,38 @@ Best practices
 
 
 - The PersonsServiceTest & the CountriesServiceTest are not best practice because they are not standalone, they depend on the database, the PersonService and the CountryService when then relies on the database through efcore which is not best practice
+
+/****************** this is the most straight forward way to use moq ***************/
+
+  // this is the data that will be stored in the moq'ed object
+  var countriesInitialData = new List<Country>() { };
+
+  // create the dbcontextmock with the options
+  DbContextMock<ApplicationDbContext> dbContextMock = new DbContextMock<ApplicationDbContext>(
+    // new DbContextOptionsBuilder<ApplicationDbContext>().Options
+    new DbContextOptions<ApplicationDbContext>() // you can use either one, this is fine if we don't want to specify anything other than it has options
+  );
+
+  // mock the particular dbset of Countries
+  dbContextMock.CreateDbSetMock(temp => temp.Countries, initialEntities: countriesInitialData);
+
+  // get the instance of the applicationdbcontext that is mocked with in mock in memory objects
+  ApplicationDbContext dbContext = dbContextMock.Object;
+
+  // Initialize countries service with the mocked applicationdbcontext that uses in memory objects
+  _countriesService = new CountriesService(dbContext);
+
+  //  DbContextMock<ApplicationDbContext> dbContextMock = new DbContextMock<ApplicationDbContext>(
+  //    new DbContextOptionsBuilder<ApplicationDbContext>().Options
+  //   );
+
+  //  ApplicationDbContext dbContext = dbContextMock.Object;
+  //  dbContextMock.CreateDbSetMock(temp => temp.Countries, countriesInitialData);
+
+  //  _countriesService = new CountriesService(dbContext);
+/***********************************************************************************/
+
+
+/********************************** IFixture ***************************************/
+  - Used to keep DRY principle
+/***********************************************************************************/

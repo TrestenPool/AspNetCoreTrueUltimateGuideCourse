@@ -22,8 +22,8 @@ namespace Services
   //constructor
   public PersonsService(ApplicationDbContext personDbContext, ICountriesService countriesService)
   {
-   _db = personDbContext;
-   _countriesService = countriesService;
+    _db = personDbContext;
+    _countriesService = countriesService;
   }
 
 
