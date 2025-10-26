@@ -39,4 +39,12 @@ Best practices
 
 /********************************** IFixture ***************************************/
   - Used to keep DRY principle
+  
+  - _fixture.Create<ClassToBuild>();
+  
+  - _fixture.Build<ClassToBuild>
+    .With(t => t.Email, "someone@email.com")
+    .Create();
+
+    
 /***********************************************************************************/
